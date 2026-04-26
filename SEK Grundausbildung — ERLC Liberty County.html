@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)file:///C:/Users/Masim/Downloads/sek-ausbildung-erlc_1.html -->
+<html lang="de"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEK Grundausbildung — ERLC Liberty County</title>
+<link href="./SEK Grundausbildung — ERLC Liberty County_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c0f;
+    --surface: #111418;
+    --border: #1e2530;
+    --accent: #c8a84b;
+    --accent2: #3b6ea5;
+    --danger: #b03030;
+    --text: #d4d8de;
+    --text-muted: #5a6270;
+    --text-bright: #eef0f3;
+    --mono: 'Share Tech Mono', monospace;
+    --sans: 'Barlow Condensed', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Subtle noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* HEADER */
+  .header {
+    border-left: 4px solid var(--accent);
+    padding: 0 0 0 20px;
+    margin-bottom: 48px;
+    animation: fadeIn 0.6s ease both;
+  }
+
+  .header-badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .header h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    color: var(--text-bright);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+  }
+
+  .header h1 span {
+    color: var(--accent);
+  }
+
+  .header-sub {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--border) 60%, transparent 100%);
+    margin: 32px 0;
+  }
+
+  /* PHASE BLOCK */
+  .phase {
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    animation: slideUp 0.5s ease both;
+  }
+
+  .phase:nth-child(1) { animation-delay: 0.1s; }
+  .phase:nth-child(2) { animation-delay: 0.2s; }
+  .phase:nth-child(3) { animation-delay: 0.3s; }
+  .phase:nth-child(4) { animation-delay: 0.4s; }
+  .phase:nth-child(5) { animation-delay: 0.5s; }
+
+  .phase-header {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .phase-header:hover { background: #15191f; }
+
+  .phase-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.1em;
+    min-width: 48px;
+    justify-content: center;
+  }
+
+  .phase-num.blue { background: var(--accent2); }
+  .phase-num.red  { background: var(--danger); }
+
+  .phase-title-wrap {
+    padding: 14px 16px;
+    flex: 1;
+  }
+
+  .phase-title {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-bright);
+  }
+
+  .phase-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    letter-spacing: 0.08em;
+  }
+
+  .phase-toggle {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    font-family: var(--mono);
+    font-size: 16px;
+    color: var(--text-muted);
+    transition: transform 0.3s, color 0.2s;
+  }
+
+  .phase-toggle.open {
+    transform: rotate(180deg);
+    color: var(--accent);
+  }
+
+  .phase-body {
+    display: none;
+    padding: 20px 20px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .phase-body.open { display: block; }
+
+  /* SECTION within phase */
+  .section {
+    margin-bottom: 20px;
+  }
+
+  .section:last-child { margin-bottom: 0; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section p {
+    font-size: 15px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .section p:last-child { margin-bottom: 0; }
+
+  /* List */
+  ul.sek-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  ul.sek-list li {
+    font-size: 15px;
+    color: var(--text);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  ul.sek-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+  }
+
+  /* Rule box */
+  .rule-box {
+    background: #0e1117;
+    border-left: 3px solid var(--danger);
+    padding: 10px 14px;
+    margin-top: 14px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: #c06060;
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+  }
+
+  .rule-box strong {
+    color: var(--danger);
+  }
+
+  /* Info tags */
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    background: var(--bg);
+  }
+
+  .tag.accent {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .tag.blue {
+    border-color: var(--accent2);
+    color: #6fa0d0;
+  }
+
+  /* Two column grid */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 520px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+
+  .col-block {
+    background: #0e1117;
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+  }
+
+  .col-block .col-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .col-block ul.sek-list li { font-size: 14px; }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 48px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    animation: fadeIn 0.8s 0.6s ease both;
+  }
+
+  .footer-bar {
+    width: 4px;
+    height: 40px;
+    background: var(--danger);
+    flex-shrink: 0;
+  }
+
+  .footer-text {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-text strong {
+    color: var(--text);
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="header-badge">Made by Levin</div>
+    <h1>SEK <span>Grundausbildung</span></h1>
+    <div class="header-sub">DOKUMENT-VERSION 1.0 &nbsp;|&nbsp; INTERN &nbsp;|&nbsp; AUSBILDER-VORLAGE</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PHASE 1 -->
+  <div class="phase">
+    <div class="phase-header" onclick="toggle(this)">
+      <div class="phase-num">01</div>
+      <div class="phase-title-wrap">
+        <div class="phase-title">Antreten &amp; Einweisung</div>
+        <div class="phase-meta">ORT: SEK-HQ LIBERTY COUNTY &nbsp;|&nbsp; DAUER: 15 MIN</div>
+      </div>
+      <div class="phase-toggle">▼</div>
+    </div>
+    <div class="phase-body">
+      <div class="section">
+        <div class="section-label">Ablauf</div>
+        <p>Sammeln am SEK-HQ. Pünktlichkeit ist Pflicht. Der Ausbilder begrüßt die Rekruten und führt die Überprüfung durch.</p>
+      </div>
+      <div class="section">
+        <div class="section-label">Pflichtcheck</div>
+        <div class="two-col">
+          <div class="col-block">
+            <div class="col-label">Ausrüstung &amp; Funk</div>
+            <ul class="sek-list">
+              <li>Funkdisziplin testen</li>
+              <li>Uniform: SEK-Skin angelegt</li>
+              <li>Ausrüstung vollständig</li>
+            </ul>
+          </div>
+          <div class="col-block">
+            <div class="col-label">RP-Element</div>
+            <ul class="sek-list">
+              <li>Jeder Rekrut nennt Name &amp; Dienstrang</li>
+              <li>Sicherheitsbelehrung bestätigen</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase">
+    <div class="phase-header" onclick="toggle(this)">
+      <div class="phase-num blue">02</div>
+      <div class="phase-title-wrap">
+        <div class="phase-title">Fahrtraining</div>
+        <div class="phase-meta">ORT: FLUGFELD / PLZ 300 &amp; 301 / HIGHWAY &nbsp;|&nbsp; DAUER: 45 MIN</div>
+      </div>
+      <div class="phase-toggle">▼</div>
+    </div>
+    <div class="phase-body">
+      <div class="section">
+        <div class="section-label">Teil 1 — Fahrzeugkontrolle (Flugfeld)</div>
+        <ul class="sek-list">
+          <li>Slalom durch markierte Punkte</li>
+          <li>Richtiges Parken in Ernstsituationen</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-label">Teil 2 — Taktisches Fahren (PLZ 300 &amp; 301, Highway)</div>
+        <ul class="sek-list">
+          <li>Konvoifahren in Verbandsformation</li>
+          <li>Teampositionierung unter Bedrohung</li>
+        </ul>
+      </div>
+      <div class="rule-box">
+        <strong>REGELN:</strong> Abstand halten. Kein Rammen ohne Befehl. Verstoss wird sofort geahndet.
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase">
+    <div class="phase-header" onclick="toggle(this)">
+      <div class="phase-num red">03</div>
+      <div class="phase-title-wrap">
+        <div class="phase-title">Schiessausbildung</div>
+        <div class="phase-meta">ORT: SCHIESSSTAND (ABGELEGENER RP-BEREICH) &nbsp;|&nbsp; DAUER: 45 MIN</div>
+      </div>
+      <div class="phase-toggle">▼</div>
+    </div>
+    <div class="phase-body">
+      <div class="section">
+        <div class="section-label">Teil 1 — Praezisionsschießen</div>
+        <p>Statisches Ziel auf mittlere Distanz. Drei Durchgänge pro Rekrut. Treffer werden protokolliert.</p>
+      </div>
+      <div class="section">
+        <div class="section-label">Teil 2 — Gebäudesicherung (2er-Teams)</div>
+        <p>Raumsicherung in einem vom Ausbilder frei gewählten Gebäude. Ort und Haus werden erst vor Ort bekanntgegeben.</p>
+      </div>
+      <div class="rule-box">
+        <strong>BEWERTET:</strong> Schussdisziplin — kein Friendly-Fire — taktisches Vorgehen. Friendly-Fire bedeutet sofortigen Abbruch.
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase">
+    <div class="phase-header" onclick="toggle(this)">
+      <div class="phase-num">04</div>
+      <div class="phase-title-wrap">
+        <div class="phase-title">Ausdauertest</div>
+        <div class="phase-meta">ORT: PLZ 504 → SEK-HQ &nbsp;|&nbsp; DAUER: 30 MIN</div>
+      </div>
+      <div class="phase-toggle">▼</div>
+    </div>
+    <div class="phase-body">
+      <div class="section">
+        <div class="section-label">Lauf</div>
+        <p>Route: PLZ 504 — SEK-HQ. Volle Ausrüstung, kein Fahrzeug. Das Team bleibt zusammen. Wer abreißt, zieht alle runter.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 5 -->
+  <div class="phase">
+    <div class="phase-header" onclick="toggle(this)">
+      <div class="phase-num red">05</div>
+      <div class="phase-title-wrap">
+        <div class="phase-title">Abschlussszenario</div>
+        <div class="phase-meta">ORT: UNBEWOHNTE HÄUSER (PLZ 300 / 301) &nbsp;|&nbsp; DAUER: 30 MIN &nbsp;|&nbsp; OPTIONAL</div>
+      </div>
+      <div class="phase-toggle">▼</div>
+    </div>
+    <div class="phase-body">
+      <div class="section">
+        <div class="section-label">Szenario-Ablauf</div>
+        <ul class="sek-list">
+          <li>Geiselnahme in einem unbewohnten Haus (Auswahl vor Ort)</li>
+          <li>Taktischer Zugriff</li>
+          <li>Taterfestnahme &amp; Cuffing</li>
+          <li>Evakuierung &amp; Sicherung des Bereichs</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-label">Kombinierte Anforderungen</div>
+        <div class="tag-row">
+          <span class="tag accent">Anfahrt im Konvoi</span>
+          <span class="tag accent">Funkmeldungen</span>
+          <span class="tag accent">Taktik &amp; Deckung</span>
+          <span class="tag accent">Schusseinsatz</span>
+        </div>
+        <p style="margin-top:12px;">Kein Coaching durch den Ausbilder waehrend des Szenarios. Die Rekruten handeln eigenverantwortlich. Der Ausbilder beobachtet und bewertet stumm.</p>
+      </div>
+      <div class="rule-box">
+        <strong>HINWEIS:</strong> Wer im Abschlussszenario auffällig versagt, besteht die Grundausbildung nicht — unabhangig von Einzelleistungen in vorherigen Phasen.
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-bar"></div>
+    <div class="footer-text">
+      <strong>Bewertungsgrundlage:</strong> Disziplin, Teamfähigkeit, Funkverhalten und Eigeninitiative.<br>
+      Dieses Dokument ist intern. Weitergabe an nicht autorisierte Personen ist untersagt.
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggle(header) {
+    const body = header.nextElementSibling;
+    const arrow = header.querySelector('.phase-toggle');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    arrow.classList.toggle('open', !isOpen);
+  }
+
+  // Open first phase by default
+  document.addEventListener('DOMContentLoaded', () => {
+    const first = document.querySelector('.phase-header');
+    if (first) toggle(first);
+  });
+</script>
+
+
+</body></html>
